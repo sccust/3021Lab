@@ -1,4 +1,4 @@
-package codemining.util.data;
+package util.data;
 
 import com.google.common.base.Objects;
 

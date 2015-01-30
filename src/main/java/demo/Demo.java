@@ -3,40 +3,66 @@ package demo;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
-
+import util.data.Pair;
 
 public class Demo
 {
-   public static void main(String[] args) {
-	 String line="";
-	 List<Pair<String,String>> posts=new ArrayList<String>();
-	 //String posts[]={"The weather today is so great!!",""};
-	 
-      BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-  try {
-        line = br.readLine();
-        if(line.startsWith("post"))
-        {
-     	 posts.add(line.split(" ")[1]);
-     	 System.out.println("Post:"+" "+System.currentTimeMillis());
-        }
-        else if(line.startsWith("delete"))
-        {
-     	 
-        }
-        else if(line.startsWith("list"))
-        {
-     	 
-        }
-        else if(line.startsWith("search"))
-        {
-     	 
-        }
-    } catch (IOException e) {
-        e.printStackTrace();
-    }
-    System.out.println("readString 方法的输入：" + line);
-}
+   public static void main(String[] args)
+   {
+	 String line = "";
+	 List<Pair<String, String>> posts = new ArrayList<Pair<String, String>>();
+	 // String posts[]={"The weather today is so great!!",""};
+	 BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+	 try
+	 {
+	    line = br.readLine();
+	    while (!line.startsWith("exit"))
+	    {
+		  if (line.startsWith("post"))
+		  {
+			String content = line.substring(5);
+			long time = System.currentTimeMillis();
+			SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+			String datetime = dateFormat.format(new Date(time));
+			posts.add(Pair.create(content, datetime));
+			System.out.println("Post:" + content + " [" + datetime + "]");
+		  }
+		  else if (line.startsWith("delete"))
+		  {
+			int index = Integer.parseInt(line.split(" ")[1]);
+			posts.remove(index);
+		  }
+		  else if (line.startsWith("list"))
+		  {
+			System.out.println("Current Posts:");
+			for (int i = 0; i < posts.size(); i++)
+			{
+			   Pair<String, String> post = posts.get(i);
+			   System.out.println("post " + (i+1) + ": [" + post.second + "]" + post.first);
+			}
+		  }
+		  else if (line.startsWith("search"))
+		  {
+			String keyword = line.split(" ")[1];
+			for (int i = 0; i < posts.size(); i++)
+			{
+			   Pair<String, String> post = posts.get(i);
+			   if (post.first.contains(keyword))
+			   {
+				 System.out
+					  .println("post " + (i+1) + ": [" + post.second + "]" + post.first);
+			   }
+			}
+		  }
+		  line = br.readLine();
+	    }
+	 } catch (IOException e)
+	 {
+	    e.printStackTrace();
+	 }
+   }
 }

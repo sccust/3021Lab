@@ -11,12 +11,41 @@ import util.data.Pair;
 
 public class Demo
 {
-   public static void main(String[] args)
-   {
+   
+	private static void welcomeInfo() {
+		 System.out.println("===============================================");
+		 System.out.println("==                                           ==");
+		 System.out.println("==      Welcome to Microblog (COMP 3021)     ==");
+		 System.out.println("==                                           ==");
+		 System.out.println("===============================================");
+		 System.out.println();
+		 System.out.println("command option       function");
+		 System.out.println("  exit               Exit the program");
+		 System.out.println("  post  <Content>    Post a miroblog");
+		 System.out.println("  list               List all your posts");
+		 System.out.println("delete  <Index>      Delete one your post");
+		 System.out.println("search  <Key Words>  Search from your posts");
+	}
+	
+	private static void exitInfo() {
+		 System.out.println("===============================================");
+		 System.out.println("==                                           ==");
+		 System.out.println("==      See you next Time:)  (COMP 3021)     ==");
+		 System.out.println("==                                           ==");
+		 System.out.println("===============================================");
+	
+	}
+	
+	public static void main(String[] args)
+	{
 	 String line = "";
 	 List<Pair<String, String>> posts = new ArrayList<Pair<String, String>>();
 	 // String posts[]={"The weather today is so great!!",""};
 	 BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+	 
+	 welcomeInfo();
+
+	 
 	 try
 	 {
 	    line = br.readLine();
@@ -34,7 +63,7 @@ public class Demo
 		  else if (line.startsWith("delete"))
 		  {
 			int index = Integer.parseInt(line.split(" ")[1]);
-			posts.remove(index);
+			posts.remove(index-1);
 		  }
 		  else if (line.startsWith("list"))
 		  {
@@ -60,6 +89,7 @@ public class Demo
 		  }
 		  line = br.readLine();
 	    }
+	    exitInfo();
 	 } catch (IOException e)
 	 {
 	    e.printStackTrace();

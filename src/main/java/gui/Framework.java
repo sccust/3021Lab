@@ -103,7 +103,7 @@ public class Framework {
       leftPanel.setSize(new Dimension(40, 100));
       leftPanel.setSize(new Dimension(150,100));
       //JLabel 
-      JPanel post1 = new JPanel(new BorderLayout());
+   
       //post1.add(new JLabel("2014-02-11,11:33:23"),BorderLayout.PAGE_START);
       //post1.add(new JTextArea("Select either the Left to Right or Right to Left option and click the Apply orientation button to set up the component's orientation. The following code snippet applies the Left to Right components orientation to the experimentLayout."),BorderLayout.CENTER);
       //rightPanel.add(post1);

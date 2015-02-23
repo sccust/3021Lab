@@ -7,12 +7,12 @@ It has 8 sections, each section is related to a lab assignment of one week
 
 ## Week 1 Create your own object
 
-# Objective
+#### Objective
 1. Learn how to create an object
 2. Learn how to inherit an object
 3. Learn how to new an object
 
-# Tasks
+#### Tasks
 1. Create an object named Post and an object named User
 2. Create an object named FriendsPost inherited from Post
 3. Test all your objects

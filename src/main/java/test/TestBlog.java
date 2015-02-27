@@ -8,7 +8,7 @@ import blog.*;
 public class TestBlog {
 	
 	/**
-	 * Get use input
+	 * Get user input
 	 * @return String
 	 */
 	public String getInput(){

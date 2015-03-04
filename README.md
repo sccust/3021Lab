@@ -17,7 +17,16 @@ It has 8 sections, each section is related to a lab assignment of one week
 2. Create an object named FriendsPost inherited from Post
 3. Test all your objects
 
-## Week 2
+## Week 2 Create your Blog and implement basic functions
+
+#### Objective
+1. Basic String operations
+2. Use Console to handle input and output
+
+#### Tasks
+1. Create an object named Blog and implement three basic methods
+2. Test all methods
+
 ## Week 3
 ## Week 4
 ## Week 5

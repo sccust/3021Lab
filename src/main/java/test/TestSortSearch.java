@@ -3,15 +3,14 @@ package test;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Collections;
-import java.util.Comparator;
-import java.util.Date;
 import java.util.GregorianCalendar;
 
 import base.Post;
+import base.PostSortByContentLength;
 import base.User;
 import blog.Blog;
 
-public class TestSearchSort {
+public class TestSortSearch {
 
 	public static void main(String[] args) {
 
@@ -38,9 +37,7 @@ public class TestSearchSort {
 		ArrayList<Post> allposts = new ArrayList<Post>();
 		// Month starts with 0, not 1
 		Calendar cal1 = new GregorianCalendar(2015, 02, 1); // March 1, 2015
-
-		Date date1 = cal1.getTime();
-		allposts.add(new Post(date1, "No sunshine these days"));
+		allposts.add(new Post(cal1.getTime(), "No sunshine these days"));
 
 		Calendar cal4 = new GregorianCalendar(2014, 11, 25); // Dec. 25, 2014
 		allposts.add(new Post(cal4.getTime(), "Merry Xmas @Amy!"));
@@ -62,25 +59,15 @@ public class TestSearchSort {
 		// *****************Task 3: sort post by the length of content
 
 		System.out.println("\n***Sort posts by the length of content***");
-		Collections.sort(allposts, new Comparator<Post>() {
-			@Override
-			public int compare(Post p1, Post p2) {
-				int size1 = p1.getContent().length();
-				int size2 = p2.getContent().length();
-				if (size1 < size2) {
-					return -1;
-				}
-				return (size1 > size2) ? 1 : 0;
-			}
-		});
+		Collections.sort(allposts, new PostSortByContentLength());
 		for (Post p : allposts) {
 			System.out.println(p);
 		}
 
-		// ******************Task 4: search posts
-
+		// ******************Task 4: search posts (optional)
+		// Comment the code below if you can't finish this task
 		System.out
-				.println("\n***Search posts created in Feb and mentioned Amy***");
+				.println("\n***Search posts created in Feburary and mentioned Amy***");
 		Blog blog = new Blog(userA);
 		blog.setPosts(allposts);
 		blog.search(2, "Amy");

@@ -126,7 +126,9 @@ public class Post implements Comparable<Post> {
 		return (int) date.hashCode() * content.hashCode();
 	}
 
+	@Override
 	public int compareTo(Post p) {
+		// TODO write your code here
 		return this.getDate().compareTo(p.getDate());
 	}
 

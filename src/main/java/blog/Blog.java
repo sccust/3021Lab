@@ -91,16 +91,24 @@ public class Blog {
 	 * Search posts created in month and mentioned someone
 	 * 
 	 * @param month
-	 * @param mention
+	 * @param someone
 	 */
-	public void search(int month, String mention) {
+	public void search(int month, String someone) {
+
 		Calendar cal = Calendar.getInstance();
+		// search from all posts
 		for (Post p : allPosts) {
+			// get the current post's month (note that Calendar.Month starts
+			// with 0, not 1)
 			cal.setTime(p.getDate());
-			if (cal.get(Calendar.MONTH) == month - 1
-					&& p.getContent().contains("@" + mention)) {
+			int postMonth = cal.get(Calendar.MONTH);
+
+			// TODO write your code here
+			if (postMonth == month - 1
+					&& p.getContent().contains("@" + someone)) {
 				System.out.println(p);
 			}
+
 		}
 	}
 

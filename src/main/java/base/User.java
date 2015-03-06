@@ -7,14 +7,15 @@ package base;
  * 
  */
 
-public class User {
-	
+public class User implements Comparable<User> {
+
 	private int userId;
 	private String userName;
 	private String userEmail;
-	
+
 	/**
 	 * Constructor
+	 * 
 	 * @param userId
 	 * @param userName
 	 * @param userEmail
@@ -24,6 +25,7 @@ public class User {
 		this.userName = userName;
 		this.userEmail = userEmail;
 	}
+
 	/**
 	 * 
 	 * @return
@@ -31,7 +33,7 @@ public class User {
 	public int getUserId() {
 		return userId;
 	}
-	
+
 	/**
 	 * 
 	 * @param userId
@@ -39,7 +41,7 @@ public class User {
 	public void setUserId(int userId) {
 		this.userId = userId;
 	}
-	
+
 	/**
 	 * 
 	 * @return
@@ -47,7 +49,7 @@ public class User {
 	public String getUserName() {
 		return userName;
 	}
-	
+
 	/**
 	 * 
 	 * @param userName
@@ -55,7 +57,7 @@ public class User {
 	public void setUserName(String userName) {
 		this.userName = userName;
 	}
-	
+
 	/**
 	 * 
 	 * @return
@@ -63,7 +65,7 @@ public class User {
 	public String getUserEmail() {
 		return userEmail;
 	}
-	
+
 	/**
 	 * 
 	 * @param userEmail
@@ -71,14 +73,13 @@ public class User {
 	public void setUserEmail(String userEmail) {
 		this.userEmail = userEmail;
 	}
-	
-	
-	
+
 	@Override
 	public String toString() {
 		return "User [userId=" + userId + ", userName=" + userName
 				+ ", userEmail=" + userEmail + "]";
 	}
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -90,7 +91,7 @@ public class User {
 				+ ((userName == null) ? 0 : userName.hashCode());
 		return result;
 	}
-	
+
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
@@ -115,6 +116,12 @@ public class User {
 		return true;
 	}
 
-	
-	
+	@Override
+	public int compareTo(User u) {
+		if (this.getUserId() < u.getUserId()) {
+			return -1;
+		}
+		return (this.getUserId() > u.getUserId()) ? 1 : 0;
+	}
+
 }

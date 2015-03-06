@@ -2,7 +2,6 @@ package base;
 
 import java.util.Date;
 
-
 /**
  * 
  * @author Ming WEN
@@ -10,14 +9,14 @@ import java.util.Date;
  * 
  */
 
-public class Post {
+public class Post implements Comparable<Post> {
 
 	private Date date;
 	private String content;
-	
-	
+
 	/**
 	 * Constructor
+	 * 
 	 * @param date
 	 * @param content
 	 */
@@ -33,34 +32,34 @@ public class Post {
 	public Date getDate() {
 		return date;
 	}
-	
+
 	/**
 	 * 
 	 * @param date
 	 */
-	
+
 	public void setDate(Date date) {
 		this.date = date;
 	}
-	
+
 	/**
 	 * 
 	 * @return the content of the blog
 	 */
-	
+
 	public String getContent() {
 		return content;
 	}
-	
+
 	/**
 	 * 
 	 * @param content
 	 */
-	
+
 	public void setContent(String content) {
 		this.content = content;
 	}
-	
+
 	@Override
 	/**
 	 * Output this object in string format 
@@ -72,7 +71,7 @@ public class Post {
 		content += this.content;
 		return content;
 	}
-	
+
 	@Override
 	/**
 	 * Check whether this object equals object o
@@ -82,49 +81,53 @@ public class Post {
 	 */
 	public boolean equals(Object o) {
 		// an object should equals to itself
-		if (o == this) 
+		if (o == this)
 			return true;
-		
+
 		// an object should not equal to null
 		if (o == null)
 			return false;
-		
+
 		// If there are not in the same class, they shouldn't be equal
 		if (o.getClass() != Post.class)
 			return false;
-		
+
 		// Transfer o to object Post
 		Post blog = (Post) o;
-		
+
 		// both the date and the content must the same
-		if (this.date.equals(blog.getDate()) && this.content.equals(blog.getContent())) 
+		if (this.date.equals(blog.getDate())
+				&& this.content.equals(blog.getContent()))
 			return true;
-		else return false;
+		else
+			return false;
 	}
-	
+
 	/**
 	 * check whether this post contains some keyword
+	 * 
 	 * @param keyword
 	 * @return
 	 */
-	
+
 	public boolean contains(String keyword) {
-		if (content.contains(keyword)) 
+		if (content.contains(keyword))
 			return true;
-		else return false;
+		else
+			return false;
 	}
-	
+
 	/**
 	 * 
 	 */
 	@Override
 	public int hashCode() {
-		
+
 		return (int) date.hashCode() * content.hashCode();
 	}
-	
 
-	
-	
-	
+	public int compareTo(Post p) {
+		return this.getDate().compareTo(p.getDate());
+	}
+
 }

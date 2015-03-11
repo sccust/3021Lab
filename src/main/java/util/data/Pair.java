@@ -2,6 +2,8 @@ package util.data;
 
 import com.google.common.base.Objects;
 
+
+
 public class Pair<T1, T2> {
     public final T1 first;
     public final T2 second;

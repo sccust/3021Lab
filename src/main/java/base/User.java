@@ -1,5 +1,7 @@
 package base;
 
+import java.io.Serializable;
+
 /**
  * 
  * @author Ming WEN
@@ -7,7 +9,7 @@ package base;
  * 
  */
 
-public class User implements Comparable<User> {
+public class User implements Comparable<User>,Serializable {
 
 	private int userId;
 	private String userName;

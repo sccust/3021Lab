@@ -1,8 +1,18 @@
 package blog;
 
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Calendar;
-
 import base.Post;
 import base.User;
 
@@ -13,11 +23,63 @@ import base.User;
  * 
  */
 
-public class Blog {
+public class Blog implements Serializable{
 
 	private User user;
 	private ArrayList<Post> allPosts;
 
+	public void save(String filepath) 
+	{
+		 // TODO Auto-generated method stub
+		 FileOutputStream fo=null;
+		 ObjectOutputStream os=null;
+	    try
+	    {
+		  fo = new FileOutputStream(filepath);
+	       os=new ObjectOutputStream(fo);
+		 os.writeObject(this);
+		 os.close();
+	    } catch (IOException e)
+	    {
+		  // TODO Auto-generated catch block
+		 e.printStackTrace();
+	    }
+	   
+	}
+	   
+	   
+	public void load(String filepath) 
+	{
+		// TODO Auto-generated method stub
+		 FileInputStream fi=null;
+		 ObjectInputStream is=null;
+	    try
+	    {
+		  fi = new FileInputStream(filepath);
+	       is=new ObjectInputStream(fi);
+		 
+		 Blog b=(Blog)is.readObject();
+		 this.user=b.user;
+		 this.allPosts=b.allPosts;
+		  
+		 is.close();
+	    } catch (ClassNotFoundException e)
+	    {
+		  // TODO Auto-generated catch block
+		 e.printStackTrace();
+		 
+	    } catch (FileNotFoundException e)
+	    {
+		  System.out.println("Wait! There is something wrong. I cannot find the file..");
+		  
+	    } catch (IOException e)
+	    {
+		  // TODO Auto-generated catch block
+		 e.printStackTrace();
+	    }
+		 
+	}
+	   
 	/**
 	 * Constructor
 	 * 
@@ -149,4 +211,6 @@ public class Blog {
 	public int hashCode() {
 		return user.hashCode();
 	}
-}
+
+
+  }

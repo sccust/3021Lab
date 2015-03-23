@@ -28,18 +28,19 @@ public class Test25 {
 		System.out.println(fbi2.encryption("abc", -2));
 		System.out.println(fbi2.encryption("xyz", 28));
 		System.out.println(fbi2.encryption("xyz", -1));
+		System.out.println(fbi2.encryption("xyz", 0));
 
 		ArrayList<String> names = new ArrayList<String>();
 
 		names.add("Mike");
+		System.out.println(fbi3.hunting(names));
 
 		names.add("Amy");
 
 		names.add("Justin");
 
 		names.add("Amy");
-
-		System.out.println(fbi3.hunting(names, "Amy"));
+		System.out.println(fbi3.hunting(names));
 
 	}
 

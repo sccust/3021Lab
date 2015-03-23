@@ -15,14 +15,12 @@ public class PhoenixFBI extends FBI {
 		return super.id + ":" + location + ":" + super.description;
 	}
 
-	public int hunting(ArrayList<String> list, String target) {
-		int index = -1;
-		for (int i = 0; i < list.size(); i++) {
-			if (list.get(i).equals(target)) {
-				index = i;
-			}
+	public int hunting(ArrayList<String> list) {
+		int len = 0;
+		for (String s : list) {
+			len = s.length() > len ? s.length() : len;
 		}
-		return index;
+		return len;
 	}
 
 }

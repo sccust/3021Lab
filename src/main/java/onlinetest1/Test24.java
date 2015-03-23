@@ -28,6 +28,7 @@ public class Test24 {
 		System.out.println(fbi2.encryption("hello", 8));
 		System.out.println(fbi2.encryption("hello", -1));
 		System.out.println(fbi2.encryption("hello", -4));
+		System.out.println(fbi2.encryption("hello", 0));
 
 		ArrayList<String> names = new ArrayList<String>();
 
@@ -40,6 +41,7 @@ public class Test24 {
 		names.add("Amy");
 
 		System.out.println(fbi3.hunting(names, "Amy"));
+		System.out.println(fbi3.hunting(names, "Bob"));
 
 	}
 

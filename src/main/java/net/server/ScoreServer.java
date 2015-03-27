@@ -21,14 +21,14 @@ import java.util.Map;
  */
 
 public class ScoreServer {  
-  public static final int PORT = 30210;//监听的端口号     
+  public static final int PORT = 3021;//监听的端口号     
   public Map<String,String> scores=new HashMap<String,String>();  
-  private final String scorefilepath="/homes/xguaa/onlinetest1.csv";
+  private final String scorefilepath="onlinetest1.csv";
   
   
   
   public static void main(String[] args) {    
-      System.out.println("服务器启动...\n");    
+      System.out.println("Server Startup...\n");    
       ScoreServer server = new ScoreServer();
       
       server.init();    
@@ -41,7 +41,7 @@ public class ScoreServer {
          String line=scoreBr.readLine();
          while(line!=null)
          {
-     	  String stuID=line.split("\t")[0];
+     	  String stuID=line.split(",")[0];
      	  scores.put(stuID, line);
      	  System.out.println(stuID+"  "+line);
      	  line=scoreBr.readLine();
@@ -49,16 +49,17 @@ public class ScoreServer {
           ServerSocket serverSocket = new ServerSocket(PORT); 
 
           //serverSocket.bind(InetAddress.getLocalHost().getHostName());
-          System.out.println("server address: "+ InetAddress.getLocalHost().getHostAddress());
+          System.out.println("Server listening at: "+ InetAddress.getLocalHost().getHostAddress()+":"+PORT);
           while (true) {    
               // 一旦有堵塞, 则表示服务器与客户端获得了连接    
-              Socket client = serverSocket.accept();    
+              Socket client = serverSocket.accept();  
+              System.out.println("A new session accepted from "+client.getInetAddress().getHostAddress());
               // 处理这次连接    
               new HandlerThread(client);    
           }  
           
       } catch (Exception e) {    
-          System.out.println("服务器异常: " + e.getMessage());    
+          System.out.println("Server Error: " + e.getMessage());    
           
       }    
   }    
@@ -76,7 +77,7 @@ public class ScoreServer {
               DataInputStream input = new DataInputStream(socket.getInputStream());  
               String clientInputStr = input.readUTF();//这里要注意和客户端输出流的写方法对应,否则会抛 EOFException  
               // 处理客户端数据    
-              System.out.println("客户端发过来的内容:" + clientInputStr);    
+              System.out.println("Client Sent:" + clientInputStr);    
   
               // 向客户端回复信息    
               DataOutputStream out = new DataOutputStream(socket.getOutputStream());    
@@ -87,8 +88,11 @@ public class ScoreServer {
               if(scores.get(clientInputStr)==null)out.writeUTF("Cannot find score for "+clientInputStr);
               else 
              {
-          	  String s=scores.get("stuID")+"\n"+scores.get(clientInputStr)+"\n"
-             		+scores.get("avg")+"\n"+scores.get("std");
+          	  String s="Your score:\n"
+                    +scores.get("stuID")+"\n"
+          		+scores.get(clientInputStr)+"\n"
+             		+scores.get("avg")+"\n"
+          		+scores.get("std");
           	  out.writeUTF(s);    
              }
                 

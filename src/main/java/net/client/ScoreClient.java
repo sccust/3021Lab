@@ -14,51 +14,53 @@ import java.net.Socket;
  *
  */
 public class ScoreClient {  
-   public static String IP_ADDR = "143.89.126.152";//服务器地址   
-   public static final int PORT = 30210;//服务器端口号    
+   public static String HOST_NAME="msr.cse.ust.hk";
+   public static String IP_ADDR = "175.159.109.153";//服务器地址   
+   public static final int PORT = 3021;//服务器端口号    
      
    public static void main(String[] args) {    
-       System.out.println("客户端启动...");    
-      // System.out.println("当接收到服务器端字符为 \"OK\" 的时候, 客户端将终止\n");   
+       System.out.println("Client Startup...");     
        while (true) {    
            Socket socket = null;  
            try {  
-               IP_ADDR=InetAddress.getByName("msr.cse.ust.hk").getHostAddress();
-               //get ip name by domain name
-               System.err.println(IP_ADDR);
-               //创建一个流套接字并将其连接到指定主机上的指定端口号  
-               socket = new Socket(IP_ADDR, PORT);    
+               IP_ADDR=InetAddress.getByName(HOST_NAME).getHostAddress();//get ip name by domain name
+               System.err.println("Connecting to "+HOST_NAME+"("+IP_ADDR+"):"+PORT);
+               
+               socket = new Socket(IP_ADDR, PORT); //create a stream socket and connect it to a specific port in a server  
                    
     
-               //向服务器端发送数据    
+               /**
+                * send message to server
+                */
                DataOutputStream out = new DataOutputStream(socket.getOutputStream());    
-               System.out.print("请输入: \t");    
+               System.out.print("Input your student ID: \t");    
                String str = new BufferedReader(new InputStreamReader(System.in)).readLine();    
                out.writeUTF(str);    
                
                
-               //读取服务器端数据    
+               /**
+                * read message from server
+                */
                DataInputStream input = new DataInputStream(socket.getInputStream()); 
                String ret = input.readUTF();     
-               System.out.println("服务器端返回过来的是: " + ret);    
-               // 如接收到 "OK" 则断开连接    
-         //      if ("OK".equals(ret)) {    
-                   System.out.println("客户端将关闭连接");    
-                   Thread.sleep(500);    
-                   break;    
-           //    }    
+               System.out.println("Info from server: \n" + ret);    
+               
+               System.out.println("Close Client");    
+               Thread.sleep(500);    
+               break;    
+    
                  
-           //    out.close();  
-           //    input.close();  
+               //out.close();  
+               //input.close();  
            } catch (Exception e) {  
-               System.out.println("客户端异常:" + e.getMessage());   
+               System.out.println("Client Error:" + e.getMessage());   
            } finally {  
                if (socket != null) {  
                    try {  
                        socket.close();  
                    } catch (IOException e) {  
                        socket = null;   
-                       System.out.println("客户端 finally 异常:" + e.getMessage());   
+                       System.out.println("Client finally Error:" + e.getMessage());   
                    }  
                }  
            }  

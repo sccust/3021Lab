@@ -115,6 +115,14 @@ public class Blog implements Serializable{
 	}
 
 	/**
+	 * 
+	 * @return
+	 */
+	public ArrayList<Post> getPost(){
+		return allPosts;
+	}
+	
+	/**
 	 * create a new post in your blog
 	 * 
 	 * @param post

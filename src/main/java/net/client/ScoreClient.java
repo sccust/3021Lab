@@ -26,7 +26,7 @@ public class ScoreClient {
                IP_ADDR=InetAddress.getByName(HOST_NAME).getHostAddress();//get ip name by domain name
                System.err.println("Connecting to "+HOST_NAME+"("+IP_ADDR+"):"+PORT);
                
-               socket = new Socket(IP_ADDR, PORT); //create a stream socket and connect it to a specific port in a server  
+               socket = new Socket("175.159.109.35", PORT); //create a stream socket and connect it to a specific port in a server  
                    
     
                /**

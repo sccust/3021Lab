@@ -8,6 +8,7 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.io.PrintWriter;
 import java.net.Inet4Address;
 import java.net.InetAddress;
 import java.net.ServerSocket;
@@ -80,14 +81,22 @@ public class ScoreServer {
       public void run() {    
           try {    
               // 读取客户端数据    
-              DataInputStream input = new DataInputStream(socket.getInputStream());  
-              String clientInputStr = input.readUTF();//这里要注意和客户端输出流的写方法对应,否则会抛 EOFException  
+          //    DataInputStream input = new DataInputStream(socket.getInputStream());  
+             BufferedReader input =new BufferedReader(new InputStreamReader(socket.getInputStream()));
+        	
+             String clientInputStr = input.readLine();//这里要注意和客户端输出流的写方法对应,否则会抛 EOFException  
               // 处理客户端数据    
               System.out.println("Client Sent:" + clientInputStr);    
              
               // 向客户端回复信息    
-              DataOutputStream out = new DataOutputStream(socket.getOutputStream());    
-              if(scores.get(clientInputStr)==null)out.writeUTF("Cannot find score for "+clientInputStr);
+            //  DataOutputStream out = new DataOutputStream(socket.getOutputStream());    
+             
+              
+              PrintWriter out =new PrintWriter(socket.getOutputStream(),true);
+     	   
+              
+              
+              if(scores.get(clientInputStr)==null)out.println("Cannot find score for "+clientInputStr);
               else 
              {
           	  String s="Your score:\n"
@@ -95,7 +104,7 @@ public class ScoreServer {
           		+scores.get(clientInputStr)+"\n"
              		+scores.get("avg")+"\n"
           		+scores.get("std");
-          	  out.writeUTF(s);   
+          	  out.println(s);   
           	  
           	  BufferedWriter recordBw=new BufferedWriter(new FileWriter(requestRecordFile,true));
                  recordBw.append(System.currentTimeMillis()+","+clientInputStr+"\n");

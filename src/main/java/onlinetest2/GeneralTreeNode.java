@@ -2,7 +2,12 @@ package onlinetest2;
 
 import java.util.ArrayList;
 import java.util.List;
-
+/**
+ * 
+ * @author Xiaodong
+ *
+ * @param <T>
+ */
 public class GeneralTreeNode<T>
 {
    private T data;
@@ -27,16 +32,18 @@ public class GeneralTreeNode<T>
 	 return data;
    }
    
+   public List<GeneralTreeNode<T>> getChildren()
+   {
+	 return children;
+   }
+   
    public boolean search(T key)
    {
-	 if (children.isEmpty())return data.equals(key);
-	 else 
-	 {
+	    if(data.equals(key))return true;	 
 	    for(GeneralTreeNode<T> child:children)
 	    {
 		  if(child.search(key))return true;
 	    }
-	 }
 	 return false;
 	 
    }

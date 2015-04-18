@@ -15,8 +15,8 @@ import java.net.Socket;
  */
 public class ScoreClient {  
    public static String HOST_NAME="msr.cse.ust.hk";
-   public static String IP_ADDR = "175.159.109.153";//服务器地址   
-   public static final int PORT = 3021;//服务器端口号    
+   public static String IP_ADDR = "175.159.109.153";//
+   public static final int PORT = 3021;//   
      
    public static void main(String[] args) {    
        System.out.println("Client Startup...");     

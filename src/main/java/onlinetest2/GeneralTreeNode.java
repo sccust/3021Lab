@@ -1,6 +1,7 @@
 package onlinetest2;
 
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
 /**
  * 
@@ -11,20 +12,12 @@ import java.util.List;
 public class GeneralTreeNode<T>
 {
    private T data;
-   private List<GeneralTreeNode<T>> children=new ArrayList<GeneralTreeNode<T>>();
-   public GeneralTreeNode(T t)
-   {
-	 this.data=t;
-   }
+   private GeneralTreeNode leftChild;
+   private GeneralTreeNode rightChild;
    
-   public void addChild(GeneralTreeNode<T> child)
+   public GeneralTreeNode(T data)
    {
-	 children.add(child);
-   }
-   
-   public String toString()
-   {
-	 return "";
+	  this.data=data;
    }
    
    public T getData()
@@ -32,19 +25,65 @@ public class GeneralTreeNode<T>
 	 return data;
    }
    
-   public List<GeneralTreeNode<T>> getChildren()
+   public void setLeftChild(GeneralTreeNode child)
    {
-	 return children;
+	  leftChild=child;
+   }
+   public void setRightChild(GeneralTreeNode child)
+   {
+	  rightChild=child;
+   }
+   
+   public GeneralTreeNode getLeftChild()
+   {
+	  return leftChild;
+   }
+   public GeneralTreeNode getRightChild()
+   {
+	  return rightChild;
+   }
+   
+   public int depth()
+   {
+	  int dep=1;
+	   if(leftChild!=null)
+		 if(leftChild.depth()+1>dep)dep=leftChild.depth()+1;
+	   if(rightChild!=null)
+		 if(rightChild.depth()+1>dep)dep=rightChild.depth()+1;	  
+      return dep;
+   }
+   
+   public String toString()
+   {
+	  String ret="";
+	  LinkedList<GeneralTreeNode> queue=new LinkedList<GeneralTreeNode>();
+	  queue.offer(this);
+	  GeneralTreeNode n;
+	  while(!queue.isEmpty())
+	  {
+		n=queue.poll();
+		ret+=n.data+" ";
+		if(n.leftChild!=null)queue.offer(n.leftChild);
+		if(n.rightChild!=null)queue.offer(n.rightChild);
+	  }
+	  return ret.trim();
    }
    
    public boolean search(T key)
    {
 	    if(data.equals(key))return true;	 
-	    for(GeneralTreeNode<T> child:children)
-	    {
-		  if(child.search(key))return true;
-	    }
+
+		  if(leftChild!=null)
+			if(leftChild.search(key))return true;
+		  if(rightChild!=null)
+			if(rightChild.search(key))return true;
+		  
 	 return false;
 	 
+   }
+   
+   public boolean isSemmetric()
+   {
+	 return false;
    }
 }

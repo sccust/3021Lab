@@ -11,34 +11,43 @@ import java.util.List;
 public class TreeNode
 {
     private int data;
-    private List<TreeNode> children= new ArrayList<TreeNode>();
+    private TreeNode leftChild;
+    private TreeNode rightChild;
     
     public TreeNode(int data)
     {
 	  this.data=data;
     }
     
-    public void addChild(TreeNode child)
+    public int getData()
     {
-	  children.add(child);
+	  return data;
+    }
+    public void setLeftChild(TreeNode child)
+    {
+	  leftChild=child;
+    }
+    public void setRightChild(TreeNode child)
+    {
+	  rightChild=child;
     }
     
-    public List<TreeNode> getChildren()
+    public TreeNode getLeftChild()
     {
-	  return children;
+	  return leftChild;
     }
-    
+    public TreeNode getRightChild()
+    {
+	  return rightChild;
+    }
     
     public int depth()
     {
 	  int dep=1;
-	  if(!children.isEmpty())
-	  {
-		for(TreeNode ch:children)
-		{
-		   if(ch.depth()+1>dep)dep=ch.depth()+1;
-		}
-	  }
+	   if(leftChild!=null)
+		 if(leftChild.depth()+1>dep)dep=leftChild.depth()+1;
+	   if(rightChild!=null)
+		 if(rightChild.depth()+1>dep)dep=rightChild.depth()+1;	  
        return dep;
     }
     
@@ -52,7 +61,8 @@ public class TreeNode
 	  {
 		n=queue.poll();
 		ret+=n.data+" ";
-		for(TreeNode ch:n.children)queue.offer(ch);
+		if(n.leftChild!=null)queue.offer(n.leftChild);
+		if(n.rightChild!=null)queue.offer(n.rightChild);
 	  }
 	  return ret.trim();
     }

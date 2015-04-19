@@ -31,7 +31,7 @@ public class TestFinal
 	 else scoreDetail+="0 ";
 	 
 	 /**Q1(2)*/
-	 if(tree.toString().equalsIgnoreCase("12 34 57 13 44 123"))
+	 if(tree.toString().trim().equalsIgnoreCase("12 34 57 13 44 123"))
 	 {
 	    totalScore+=2;
 	    scoreDetail+="2 ";

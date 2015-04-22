@@ -17,10 +17,12 @@ public class BlogClient
 	 
 	try
 	 {
-	   String post="";
+	   String post="Hello";
 	   Socket clientSocket=new Socket("127.0.0.1",3021);
 	   PrintWriter out =new PrintWriter(clientSocket.getOutputStream(),true);
 	    out.println(post);
+	    out.close();
+	    clientSocket.close();
 	 } catch (IOException e)
 	 {
 	    // TODO Auto-generated catch block

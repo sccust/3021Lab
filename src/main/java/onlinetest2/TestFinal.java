@@ -6,9 +6,16 @@ package onlinetest2;
  * 
  */
 public class TestFinal {
+   
+   
 	public static void main(String[] args) {
+		final String studentID="20112345";
+		final String filePath="";
+	
+		
 		double totalScore = 0;
 		String scoreDetail = "";
+		String scoreInCSV="";
 
 		try {
 			TreeNode node1 = new TreeNode(11);
@@ -18,12 +25,14 @@ public class TestFinal {
 				/** Q1(1): constructor & getData */
 				totalScore += 0.8;
 				scoreDetail += "Q1(1): constructor + getData(): 0.8\n";
+				scoreInCSV += "0.8,";
 			} else {
 				scoreDetail += "Q1(1): constructor + getData(): 0\n";
+				scoreInCSV +="0,";
 			}
 
 		} catch (Exception e) {
-
+               scoreInCSV+="0,";
 		}
 
 		try {
@@ -35,12 +44,14 @@ public class TestFinal {
 				/** Q1(1): setLeftChild, getLeftChild */
 				totalScore += 0.6;
 				scoreDetail += "Q1(1): setLeftChild() + getLeftChild(): 0.6\n";
+				scoreInCSV +="0.6,";
 			} else {
 				scoreDetail += "Q1(1): setLeftChild() + getLeftChild(): 0\n";
+				scoreInCSV +="0,";
 			}
 
 		} catch (Exception e) {
-
+		   scoreInCSV +="0,";
 		}
 
 		try {
@@ -52,12 +63,14 @@ public class TestFinal {
 				/** Q1(1): setRightChild, getRightChild */
 				totalScore += 0.6;
 				scoreDetail += "Q1(1): setRightChild() + getRightChild: 0.6\n";
+				scoreInCSV +="0.6,";
 			} else {
 				scoreDetail += "Q1(1): setRightChild() + getRightChild: 0\n";
+				scoreInCSV +="0,";
 			}
 
 		} catch (Exception e) {
-
+		   scoreInCSV +="0,";
 		}
 
 		try {
@@ -77,10 +90,12 @@ public class TestFinal {
 			if (tree.toString().trim().equalsIgnoreCase("12 34 57 13 44 123")) {
 				totalScore += 2;
 				scoreDetail += "Q1(2): 2\n";
-			} else
+				scoreInCSV +="2,";
+			} else{
 				scoreDetail += "Q1(2): 0\n";
+			      scoreInCSV +="0,";}
 		} catch (Exception e) {
-
+		   scoreInCSV +="0,";
 		}
 
 		try {
@@ -94,12 +109,14 @@ public class TestFinal {
 				/** Q2(1): constructor & getData */
 				totalScore += 0.8;
 				scoreDetail += "Q2(1): constructor + getData(): 0.8\n";
+				scoreInCSV +="0.8,";
 			} else {
 				scoreDetail += "Q2(1): constructor + getData(): 0\n";
+				scoreInCSV +="0,";
 			}
 
 		} catch (Exception e) {
-
+		   scoreInCSV +="0,";
 		}
 
 		try {
@@ -112,12 +129,14 @@ public class TestFinal {
 				/** Q2(1): leftChild setter+getter */
 				totalScore += 0.6;
 				scoreDetail += "Q2(1): setLeftChild() + getLeftChild(): 0.6\n";
+				scoreInCSV +="0.6,";
 			} else {
 				scoreDetail += "Q2(1): setLeftChild() + getLeftChild(): 0\n";
+				scoreInCSV +="0,";
 			}
 
 		} catch (Exception e) {
-
+		   scoreInCSV +="0,";
 		}
 
 		try {
@@ -130,11 +149,13 @@ public class TestFinal {
 				/** Q2(1): rightChild setter+getter */
 				totalScore += 0.6;
 				scoreDetail += "Q2(1): setRightChild() + getRightChild(): 0.6\n";
+				scoreInCSV +="0.6,";
 			} else {
 				scoreDetail += "Q2(1): setRightChild() + getRightChild(): 0\n";
+				scoreInCSV +="0,";
 			}
 		} catch (Exception e) {
-
+		   scoreInCSV +="0,";
 		}
 
 
@@ -212,10 +233,12 @@ public class TestFinal {
 			if (!doubExist && strExist && !stuExist && teacExist) {
 				totalScore += 2;
 				scoreDetail += "Q2(2): 2\n";
-			} else
+				scoreInCSV +="2,";
+			} else{
 				scoreDetail += "Q2(2): 0\n";
+			     scoreInCSV +="0,";}
 		} catch (Exception e) {
-
+		   scoreInCSV +="0,";
 		}
 
 		try {
@@ -229,14 +252,18 @@ public class TestFinal {
 					&& !teacSymmetric) {
 				totalScore += 2;
 				scoreDetail += "Q2(3): 2\n";
-			} else
+				scoreInCSV +="2";
+			} else{
 				scoreDetail += "Q2(3): 0\n";
+			     scoreInCSV +="0";}
 		} catch (Exception e) {
-
+		   scoreInCSV +="0";
 		}
 
 		System.out.println("TotalScore:" + totalScore);
 		System.out.println("Details:\n" + scoreDetail);
+		scoreInCSV=studentID+","+totalScore+","+scoreInCSV;
+		System.out.println(scoreInCSV);
 	}
 }
 

@@ -137,7 +137,14 @@ public class TestFinal {
 
 		}
 
-		GeneralTreeNode<Double> doubTree = new GeneralTreeNode<Double>(0.05);
+
+		GeneralTreeNode<Double> doubTree =null;
+		GeneralTreeNode<String> strTree = null;
+		GeneralTreeNode<Student> stuTree = null;
+		GeneralTreeNode<Teacher> teacTree = null;
+		
+		try{
+		doubTree = new GeneralTreeNode<Double>(0.05);
 		doubTree.setLeftChild(new GeneralTreeNode<Double>(0.07));
 		doubTree.setRightChild(new GeneralTreeNode<Double>(0.08));
 		doubTree.getLeftChild().setLeftChild(new GeneralTreeNode<Double>(0.54));
@@ -148,7 +155,7 @@ public class TestFinal {
 		doubTree.getRightChild().setRightChild(
 				new GeneralTreeNode<Double>(0.82));
 
-		GeneralTreeNode<String> strTree = new GeneralTreeNode<String>(
+		strTree = new GeneralTreeNode<String>(
 				"Comp3021");
 		strTree.setLeftChild(new GeneralTreeNode<String>("src"));
 		strTree.setRightChild(new GeneralTreeNode<String>("lib"));
@@ -157,7 +164,7 @@ public class TestFinal {
 		strTree.getLeftChild()
 				.setRightChild(new GeneralTreeNode<String>("gui"));
 
-		GeneralTreeNode<Student> stuTree = new GeneralTreeNode<Student>(
+		stuTree = new GeneralTreeNode<Student>(
 				new Student("Amy", "m"));
 		stuTree.setLeftChild(new GeneralTreeNode<Student>(new Student("Tom",
 				"m")));
@@ -172,7 +179,7 @@ public class TestFinal {
 		stuTree.getRightChild().setRightChild(
 				new GeneralTreeNode<Student>(new Student("Jack", "f")));
 
-		GeneralTreeNode<Teacher> teacTree = new GeneralTreeNode<Teacher>(
+		teacTree = new GeneralTreeNode<Teacher>(
 				new Teacher("Tim", 3021));
 		teacTree.setLeftChild(new GeneralTreeNode<Teacher>(new Teacher("Zhang",
 				0422)));
@@ -188,7 +195,14 @@ public class TestFinal {
 				.getLeftChild()
 				.setRightChild(
 						new GeneralTreeNode<Teacher>(new Teacher("Wang", 2222)));
-
+		}
+		catch(Exception e)
+		{
+		   System.err.println("");
+		}
+		
+		
+		
 		try {
 			/** Q2(2) */
 			boolean doubExist = doubTree.search(0.01);
